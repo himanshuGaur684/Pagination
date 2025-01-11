@@ -1,6 +1,5 @@
-package gaur.himanshu.imagesearchapp.ui.theme
+package gaur.himanshu.imagesearchapp.presentation.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
