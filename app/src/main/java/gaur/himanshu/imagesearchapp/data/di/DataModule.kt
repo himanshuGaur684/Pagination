@@ -4,7 +4,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import gaur.himanshu.imagesearchapp.AppDatabase
 import gaur.himanshu.imagesearchapp.data.mappers.ImageDTOToImageMapper
+import gaur.himanshu.imagesearchapp.data.mappers.ImageEntityToImageMapper
 import gaur.himanshu.imagesearchapp.data.remote.ApiService
 import gaur.himanshu.imagesearchapp.data.repository.ImageRepoImpl
 import gaur.himanshu.imagesearchapp.domain.repository.ImageRepository
@@ -31,8 +33,17 @@ object DataModule {
     }
 
     @Provides
-    fun provideImageRepository(apiService: ApiService,mapper:ImageDTOToImageMapper):ImageRepository{
-        return ImageRepoImpl(apiService,mapper)
+    fun provideImageRepository(
+        apiService: ApiService,
+        mapper: ImageDTOToImageMapper,
+        imageEntityToImageMapper: ImageEntityToImageMapper,
+        appDatabase: AppDatabase
+    ): ImageRepository {
+        return ImageRepoImpl(
+            apiService, mapper,
+            imageEntityToImageMapper = imageEntityToImageMapper,
+            appDatabase = appDatabase
+        )
     }
 
 }

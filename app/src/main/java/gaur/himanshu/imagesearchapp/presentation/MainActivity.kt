@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.rememberLazyGridState
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Scaffold
@@ -64,7 +65,7 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun MainContent(modifier: Modifier = Modifier, viewModel: MainViewModel) {
-
+    val lazyState = rememberLazyGridState()
     val images = viewModel.images.collectAsLazyPagingItems()
 
     if (images.loadState.refresh is LoadState.NotLoading) {
@@ -77,7 +78,10 @@ fun MainContent(modifier: Modifier = Modifier, viewModel: MainViewModel) {
 
     }
 
-    LazyVerticalGrid(columns = GridCells.Fixed(2), modifier = modifier) {
+    LazyVerticalGrid(
+        state = lazyState,
+        columns = GridCells.Fixed(2), modifier = modifier
+    ) {
 
         if (images.loadState.prepend is LoadState.Loading) {
             item {

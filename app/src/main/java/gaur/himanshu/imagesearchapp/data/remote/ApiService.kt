@@ -11,7 +11,8 @@ interface ApiService {
     suspend fun getImages(
         @Query("key") apiKey: String = "40308333-07c19e899666cb68334ed3a46",
         @Query("q") q: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int = 10
     ): ImageResponse
 
 }
