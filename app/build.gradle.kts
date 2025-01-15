@@ -69,6 +69,10 @@ dependencies {
     kapt(libs.dagger.kapt)
 
 
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
+    implementation(libs.room.paging)
+
     implementation(libs.coil.compose)
     implementation(libs.coil.network.okhttp)
 }
